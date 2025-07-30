@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Giving @ NSPPD UK Prayer Conference</title>
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -80,11 +79,10 @@
 </head>
 <body class="p-4">
   <div class="container">
-    <!-- Header Image Section -->
-    <img src="Banner1.png" 
-         alt="NSPPD UK Prayer Conference Banner" 
-         class="header-image" 
-         onerror="this.src='https://placehold.co/500x200/cccccc/333333?text=Image+Not+Found';">
+    <img src="Banner1.png"
+          alt="NSPPD UK Prayer Conference Banner"
+          class="header-image"
+          onerror="this.src='https://placehold.co/500x200/cccccc/333333?text=Image+Not+Found';">
 
     <h2 class="text-3xl font-extrabold text-gray-900 mb-6 text-center">
       Giving @ NSPPD UK Prayer Conference
@@ -93,7 +91,6 @@
       Thank you for your generosity! Choose a convenient giving option below.
     </p>
 
-    <!-- PayPal Section -->
     <div class="mb-8">
       <h3 class="text-xl font-semibold text-gray-800 mb-4">Pay with PayPal</h3>
       <p class="text-gray-600 mb-4">You can send money via PayPal using the email below.</p>
@@ -107,7 +104,6 @@
       <p class="text-sm text-gray-500 mt-2 text-center">(Opens PayPal website in a new tab.)</p>
     </div>
 
-    <!-- Bank Transfer Section -->
     <div class="mb-6">
       <h3 class="text-xl font-semibold text-gray-800 mb-4">Bank Transfer</h3>
       <p class="text-gray-600 mb-4">Copy the details below and complete transfer in your banking app.</p>
@@ -120,21 +116,15 @@
       <button id="copyBank" class="btn btn-copy w-full">Copy Bank Details</button>
     </div>
 
-    <!-- Country Selection -->
     <div class="mt-8 pt-6 border-t border-gray-200">
       <h3 class="text-xl font-semibold text-gray-800 mb-4">Your Location</h3>
       <label for="country" class="block text-gray-700 text-sm font-bold mb-2">Select your Country:</label>
       <select id="country" name="country" class="shadow border rounded-lg w-full py-2 px-3 text-gray-700 focus:outline-none focus:border-blue-500">
         <option value="">-- Select --</option>
-        <option value="UK">United Kingdom</option>
-        <option value="US">United States</option>
-        <option value="CA">Canada</option>
-        <option value="NG">Nigeria</option>
-      </select>
+        </select>
     </div>
   </div>
 
-  <!-- Toast Notification -->
   <div id="toast" class="toast">Copied to clipboard!</div>
 
   <footer class="text-center text-gray-500 text-sm mt-8 mb-4">
@@ -156,6 +146,88 @@ Bank: Barclays
 Sort Code: 20-44-22
 Account Number: 60177563`);
       });
+
+      // --- Country List Logic ---
+      const countrySelect = document.getElementById('country');
+      const preferredCountries = {
+        "UK": "United Kingdom",
+        "US": "United States",
+        "CA": "Canada",
+        "NG": "Nigeria"
+      };
+
+      // Full list of countries (simplified for brevity, you might want a more comprehensive list)
+      const allCountries = {
+        "AF": "Afghanistan", "AL": "Albania", "DZ": "Algeria", "AD": "Andorra", "AO": "Angola",
+        "AG": "Antigua and Barbuda", "AR": "Argentina", "AM": "Armenia", "AU": "Australia",
+        "AT": "Austria", "AZ": "Azerbaijan", "BS": "Bahamas", "BH": "Bahrain", "BD": "Bangladesh",
+        "BB": "Barbados", "BY": "Belarus", "BE": "Belgium", "BZ": "Belize", "BJ": "Benin",
+        "BT": "Bhutan", "BO": "Bolivia", "BA": "Bosnia and Herzegovina", "BW": "Botswana",
+        "BR": "Brazil", "BN": "Brunei", "BG": "Bulgaria", "BF": "Burkina Faso", "BI": "Burundi",
+        "CV": "Cabo Verde", "KH": "Cambodia", "CM": "Cameroon", "CA": "Canada", "CF": "Central African Republic",
+        "TD": "Chad", "CL": "Chile", "CN": "China", "CO": "Colombia", "KM": "Comoros",
+        "CD": "Congo (DRC)", "CG": "Congo (Republic)", "CR": "Costa Rica", "HR": "Croatia",
+        "CU": "Cuba", "CY": "Cyprus", "CZ": "Czech Republic", "DK": "Denmark", "DJ": "Djibouti",
+        "DM": "Dominica", "DO": "Dominican Republic", "EC": "Ecuador", "EG": "Egypt",
+        "SV": "El Salvador", "GQ": "Equatorial Guinea", "ER": "Eritrea", "EE": "Estonia",
+        "SZ": "Eswatini", "ET": "Ethiopia", "FJ": "Fiji", "FI": "Finland", "FR": "France",
+        "GA": "Gabon", "GM": "Gambia", "GE": "Georgia", "DE": "Germany", "GH": "Ghana",
+        "GR": "Greece", "GD": "Grenada", "GT": "Guatemala", "GN": "Guinea", "GW": "Guinea-Bissau",
+        "GY": "Guyana", "HT": "Haiti", "HN": "Honduras", "HU": "Hungary", "IS": "Iceland",
+        "IN": "India", "ID": "Indonesia", "IR": "Iran", "IQ": "Iraq", "IE": "Ireland",
+        "IL": "Israel", "IT": "Italy", "CI": "Ivory Coast", "JM": "Jamaica", "JP": "Japan",
+        "JO": "Jordan", "KZ": "Kazakhstan", "KE": "Kenya", "KI": "Kiribati", "KP": "North Korea",
+        "KR": "South Korea", "XK": "Kosovo", "KW": "Kuwait", "KG": "Kyrgyzstan", "LA": "Laos",
+        "LV": "Latvia", "LB": "Lebanon", "LS": "Lesotho", "LR": "Liberia", "LY": "Libya",
+        "LI": "Liechtenstein", "LT": "Lithuania", "LU": "Luxembourg", "MG": "Madagascar",
+        "MW": "Malawi", "MY": "Malaysia", "MV": "Maldives", "ML": "Mali", "MT": "Malta",
+        "MH": "Marshall Islands", "MR": "Mauritania", "MU": "Mauritius", "MX": "Mexico",
+        "FM": "Micronesia", "MD": "Moldova", "MC": "Monaco", "MN": "Mongolia", "ME": "Montenegro",
+        "MA": "Morocco", "MZ": "Mozambique", "MM": "Myanmar", "NA": "Namibia", "NR": "Nauru",
+        "NP": "Nepal", "NL": "Netherlands", "NZ": "New Zealand", "NI": "Nicaragua",
+        "NE": "Niger", "NG": "Nigeria", "MK": "North Macedonia", "NO": "Norway", "OM": "Oman",
+        "PK": "Pakistan", "PW": "Palau", "PA": "Panama", "PG": "Papua New Guinea", "PY": "Paraguay",
+        "PE": "Peru", "PH": "Philippines", "PL": "Poland", "PT": "Portugal", "QA": "Qatar",
+        "RO": "Romania", "RU": "Russia", "RW": "Rwanda", "KN": "Saint Kitts and Nevis",
+        "LC": "Saint Lucia", "VC": "Saint Vincent and the Grenadines", "WS": "Samoa",
+        "SM": "San Marino", "ST": "Sao Tome and Principe", "SA": "Saudi Arabia", "SN": "Senegal",
+        "RS": "Serbia", "SC": "Seychelles", "SL": "Sierra Leone", "SG": "Singapore",
+        "SK": "Slovakia", "SI": "Slovenia", "SB": "Solomon Islands", "SO": "Somalia",
+        "ZA": "South Africa", "SS": "South Sudan", "ES": "Spain", "LK": "Sri Lanka",
+        "SD": "Sudan", "SR": "Suriname", "SE": "Sweden", "CH": "Switzerland", "SY": "Syria",
+        "TW": "Taiwan", "TJ": "Tajikistan", "TZ": "Tanzania", "TH": "Thailand", "TL": "Timor-Leste",
+        "TG": "Togo", "TO": "Tonga", "TT": "Trinidad and Tobago", "TN": "Tunisia", "TR": "Turkey",
+        "TM": "Turkmenistan", "TV": "Tuvalu", "UG": "Uganda", "UA": "Ukraine", "AE": "United Arab Emirates",
+        "UK": "United Kingdom", "US": "United States", "UY": "Uruguay", "UZ": "Uzbekistan",
+        "VU": "Vanuatu", "VA": "Vatican City", "VE": "Venezuela", "VN": "Vietnam", "YE": "Yemen",
+        "ZM": "Zambia", "ZW": "Zimbabwe"
+      };
+
+      // Add preferred countries to the top
+      for (const code in preferredCountries) {
+        const option = document.createElement('option');
+        option.value = code;
+        option.textContent = preferredCountries[code];
+        countrySelect.appendChild(option);
+      }
+
+      // Add a separator or just add the remaining countries
+      const separator = document.createElement('option');
+      separator.value = "";
+      separator.textContent = "--------------------";
+      separator.disabled = true; // Make it unselectable
+      countrySelect.appendChild(separator);
+
+
+      // Add all other countries, excluding the preferred ones already added
+      for (const code in allCountries) {
+        if (!preferredCountries.hasOwnProperty(code)) {
+          const option = document.createElement('option');
+          option.value = code;
+          option.textContent = allCountries[code];
+          countrySelect.appendChild(option);
+        }
+      }
     });
   </script>
 </body>
