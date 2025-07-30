@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giving @ NSPPD UK Prayer Conference</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for Inter font and general aesthetics */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Light gray background */
+        }
+        .container {
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.2s, transform 0.2s;
+            cursor: pointer;
+            text-decoration: none; /* Ensure links don't have underlines */
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        .btn-paypal { /* Renamed for clarity */
+            background-color: #0070ba; /* PayPal blue */
+            color: #ffffff;
+        }
+        .btn-paypal:hover {
+            background-color: #005ea6;
+        }
+        .btn-copy {
+            background-color: #4CAF50; /* Green for copy */
+            color: #ffffff;
+        }
+        .btn-copy:hover {
+            background-color: #45a049;
+        }
+        .details-box { /* Generic class for both bank and PayPal details */
+            background-color: #e2e8f0; /* Light blue-gray */
+            border-left: 5px solid #3b82f6; /* Blue border */
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #16a34a; /* Green for success */
+            color: #fff;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            z-index: 1000;
+        }
+        .toast.show {
+            opacity: 1;
+        }
+        /* Styling for the header image */
+        .header-image {
+            width: 100%; /* Make image responsive to container width */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 8px; /* Match container border-radius */
+            margin-bottom: 1.5rem; /* Space below the image */
+        }
+    </style>
+</head>
+<body class="p-4">
+    <div class="container">
+        <!-- Header Image Section -->
+        <img src="C:\Users\micha\OneDrive\Desktop\New folder (3)\Banner1.png" 
+             alt="NSPPD UK Prayer Conference Banner" 
+             class="header-image" 
+             onerror="this.onerror=null; this.src='https://placehold.co/500x200/cccccc/333333?text=Image+Not+Found';"
+        >
+
+        <h2 class="text-3xl font-extrabold text-gray-900 mb-6 text-center">
+            Giving @ NSPPD UK Prayer Conference
+        </h2>
+
+        <p class="text-gray-700 text-center mb-8">
+            Thank you for your generosity! Choose a convenient giving option below.
+        </p>
+
+        <!-- PayPal Section -->
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Pay with PayPal</h3>
+            <p class="text-gray-600 mb-4">
+                You can send money via PayPal using the email below.
+            </p>
+            <div class="details-box mb-4" id="paypalDetails">
+                <p><strong class="text-gray-900">PayPal Email:</strong> Nsppdinternational@streamsofjoy.org</p>
+            </div>
+            <button id="copyPaypal" class="btn btn-copy w-full mb-3">
+                <!-- Copy Icon (simple SVG) -->
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                </svg>
+                Copy PayPal Email
+            </button>
+            <a href="https://www.paypal.com/paypalme/NSPPDInternational" target="_blank" class="btn btn-paypal w-full">
+                <!-- PayPal Icon (simple SVG for demonstration) -->
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.001 2.002c-5.522 0-9.999 4.477-9.999 9.999s4.477 9.999 9.999 9.999 9.999-4.477 9.999-9.999-4.477-9.999-9.999-9.999zm4.616 13.911c-.139.083-.306.126-.474.126-.17 0-.339-.044-.479-.131-.418-.25-.668-.7-.668-1.189 0-.489.25-.939.668-1.189.418-.25.939-.25 1.357 0 .418.25.668.7.668 1.189 0 .489-.25.939-.668 1.189zm-4.616 0c-.139.083-.306.126-.474.126-.17 0-.339-.044-.479-.131-.418-.25-.668-.7-.668-1.189 0-.489.25-.939.668-1.189.418-.25.939-.25 1.357 0 .418.25.668.7.668 1.189 0 .489-.25.939-.668 1.189zm-4.616 0c-.139.083-.306.126-.474.126-.17 0-.339-.044-.479-.131-.418-.25-.668-.7-.668-1.189 0-.489.25-.939.668-1.189.418-.25.939-.25 1.357 0 .418.25.668.7.668 1.189 0 .489-.25.939-.668 1.189z"/>
+                </svg>
+                Launch PayPal
+            </a>
+            <p class="text-sm text-gray-500 mt-2 text-center">
+                (This will open the PayPal website in a new tab.)
+            </p>
+        </div>
+
+        <!-- Bank Transfer Section -->
+        <div class="mb-6">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Bank Transfer</h3>
+            <p class="text-gray-600 mb-4">
+                Please use the details below to make a bank transfer. On mobile, you can copy the details and then open your banking app.
+            </p>
+            <div class="details-box mb-4" id="bankDetails">
+                <p><strong class="text-gray-900">Account Name:</strong> NSPPD</p>
+                <p><strong class="text-gray-900">Bank:</strong> Barclays</p>
+                <p><strong class="text-gray-900">Sort Code:</strong> 20-44-22</p>
+                <p><strong class="text-gray-900">Account Number:</strong> 60177563</p>
+            </div>
+            <button id="copyBank" class="btn btn-copy w-full">
+                <!-- Copy Icon (simple SVG) -->
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                </svg>
+                Copy Bank Details
+            </button>
+            <p class="text-sm text-gray-500 mt-2 text-center">
+                (After copying, please open your banking app manually to complete the transfer.)
+            </p>
+        </div>
+
+        <!-- Country Selection (Placeholder - integrate your existing logic here) -->
+        <div class="mt-8 pt-6 border-t border-gray-200">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Your Location</h3>
+            <label for="country" class="block text-gray-700 text-sm font-bold mb-2">
+                Select your Country:
+            </label>
+            <select id="country" name="country" class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-500">
+                <option value="">-- Select --</option>
+                <option value="UK">United Kingdom</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="NG">Nigeria</option>
+                <!-- Add more countries as needed -->
+            </select>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Copied to clipboard!</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toast = document.getElementById('toast');
+
+            // Function to show the toast notification
+            function showToast() {
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 2000); // Hide after 2 seconds
+            }
+
+            // Function to copy text to clipboard and show toast
+            function copyText(text) {
+                // Using navigator.clipboard.writeText for modern browsers
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(text)
+                        .then(() => showToast())
+                        .catch(err => console.error('Failed to copy text: ', err));
+                } else {
+                    // Fallback for older browsers (though less reliable in iframes)
+                    const textArea = document.createElement('textarea');
+                    textArea.value = text;
+                    textArea.style.position = 'fixed';
+                    textArea.style.left = '-9999px';
+                    textArea.style.top = '0';
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    try {
+                        const successful = document.execCommand('copy');
+                        if (successful) {
+                            showToast();
+                        } else {
+                            console.error('Fallback: Copying text command was unsuccessful.');
+                        }
+                    } catch (err) {
+                        console.error('Fallback: Oops, unable to copy', err);
+                    }
+                    document.body.removeChild(textArea);
+                }
+            }
+
+            // Event listener for Copy PayPal Email button
+            document.getElementById('copyPaypal').addEventListener('click', () => {
+                copyText("Nsppdinternational@streamsofjoy.org");
+            });
+
+            // Event listener for Copy Bank Details button
+            document.getElementById('copyBank').addEventListener('click', () => {
+                const bankDetailsText = `Account Name: NSPPD
+Bank: Barclays
+Sort Code: 20-44-22
+Account Number: 60177563`;
+                copyText(bankDetailsText);
+            });
+        });
+    </script>
+</body>
+</html>
